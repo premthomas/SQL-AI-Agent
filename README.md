@@ -176,20 +176,20 @@ Now we have to connect this with a framework. I will be using [LangChain](https:
 Here are some of the sample questions that I have asked. I will also analyze the response.
 1. Question 1
    Human: Who played in the finals of the event_id 6136?
-   AI: 
-   Analysis: This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. 
+   <br>AI: 
+   <br>Analysis: This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. 
 2. Question 2
    Human: Tell me about the finals of IEM Katowice 2022
-   AI:
-   Analysis: Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name
+   <br>AI:
+   <br>Analysis: Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name
 3. Question 3
    Human: Map that Vitality often wins and the map that they often lose
-   AI:
-   Analysis: The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
+   <br>AI:
+   <br>Analysis: The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
 4. Question 4
    Human: G2 is playing FaZe. Which maps should G2 drop?
-   AI:
-   Analysis: This is prediction based on existing data. 
+   <br>AI:
+   <br>Analysis: This is prediction based on existing data. 
 5. Question 5
 7. Question 4
    
