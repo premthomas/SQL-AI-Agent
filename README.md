@@ -2,8 +2,9 @@
 After scraping data of international LAN / Major Counter-Strike (CS:GO/CS2) tournaments, the goal is to analyze this data. 
 Besides asking the AI some questions, here are some of the secondary goals
 1. Check if the AI can navigate through a complicated data structure. For example, a team in question might be present in either one of two columns.
-2. Use open source models
-3. Use StreamLit to format the output
+2. Use open source models.
+3. Use StreamLit to format the output.
+4. No APIs or analysis on the cloud to ensure the security of the data.
 
 ## About the data
 The popular source for CS2 data is [HLTV](www.hltv.org).
@@ -70,4 +71,108 @@ For simplicity, I have limited this exercise to two tables.
 2. SQLite for the storage of the data
 
 ## About the LLM
-Using Ollama, I have access to different free-to-use models. For this example, I will be using the ["qwen3-coder"](https://ollama.com/library/qwen3-coder) model. For any additional information about Ollama, please read my post on [Ollama and Agents](https://github.com/premthomas/Ollama-and-Agents). It contains information on how to install and get Ollama working on your machine with helpful links.
+Using Ollama, I have access to different free-to-use models. For this example, I will be using the [qwen3-coder](https://ollama.com/library/qwen3-coder) model. For any additional information about Ollama, please read my post on [Ollama and Agents](https://github.com/premthomas/Ollama-and-Agents). It contains information on how to install and get Ollama working on your machine with helpful links.
+
+## Framework
+Now we have to connect this with a framework. I will be using [LangChain](https://docs.langchain.com/oss/python/langchain/overview). I will stick to the "community" library for all the calls.
+
+## Explaining the code
+### Part 1: The Database, LLM, and Agent
+1. Initialize the database
+   ```python
+   db = SQLDatabase.from_uri("sqlite:///./data/tutorial.db")
+2. Initialize the LLM
+   ```python
+   llm = ChatOllama(
+       model = "qwen3-coder",
+       temperature = 0.99,
+       num_predict = -1)
+3. Get the toolkit and the tools
+   ```python
+   toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+   tools = toolkit.get_tools()
+4. Create your system prompt
+   ```python
+   system_prompt = """
+   You are an agent designed to interact with a SQLite database.
+   Given an input question, create a syntactically correct {dialect} query to run,
+   then look at the results of the query and return the answer. Unless the user
+   specifies a specific number of examples they wish to obtain, always limit your
+   query to at most {top_k} results.
+
+   You can order the results by a relevant column to return the most interesting
+   examples in the database. Never query for all the columns from a specific table,
+   only ask for the relevant columns given the question.
+
+   You MUST double check your query before executing it. If you get an error while
+   executing a query, rewrite the query and try again.
+
+   DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the database.
+
+   To start you should ALWAYS look at the tables in the database to see what you
+   can query. Do NOT skip this step.
+
+   Then you should query the schema of the most relevant tables.
+   """.format(
+       dialect=db.dialect,
+       top_k=100)
+5. Initialize the agent
+   ```python
+   agent = create_agent(
+         llm,
+         tools,
+         system_prompt=system_prompt)
+
+### Part 2: Tying it all up with the frontend
+1. Initializing the streamlit app
+   ```python
+   st.set_page_config(
+        page_title='Counter Strike 2 Data Analysis',
+        layout='wide')
+   st.title("Counter Strike 2 Data Analysis")
+2. Initialize the chat history and pass a couple of messages
+   ```python
+   if "messages" not in st.session_state:
+     st.session_state.messages = []
+   
+   ai_mess = f"Dialect: {streamlit_base.db.dialect}"
+   with st.chat_message("assistant"):
+     st.markdown(ai_mess)
+   st.session_state.messages.append({"role": "assistant", 
+                                     "content": ai_mess})
+
+   ai_mess = f"Available tables: {streamlit_base.db.get_usable_table_names()}"
+   with st.chat_message("assistant"):
+     st.markdown(ai_mess)
+   st.session_state.messages.append({"role": "assistant", 
+                                     "content": ai_mess})
+   ai_mess = f"Sample question: Using 2 years of data points, if G2 played FaZe today, who would win?"
+   with st.chat_message("assistant"):
+     st.markdown(ai_mess)
+   st.session_state.messages.append({"role": "assistant", 
+                                     "content": ai_mess})
+3. Get the question from the user
+   ```python
+   if question := st.chat_input("Ask me a question about Counter Strike 2 data."):
+       print("Generating response...")
+       # Display user message in chat message container
+       with st.chat_message("user"):
+           st.markdown(question)
+    
+       # Add user message to chat history
+       st.session_state.messages.append({"role": "user", "content": question})
+4. Still inside the if statement, for each step in the stream, print the output
+   ```python
+   for step in streamlit_base.agent.stream(
+      {"messages": [{"role": "user", "content": question}]},
+      stream_mode="values",):
+
+      if isinstance(step["messages"][-1], langchain_core.messages.ai.AIMessage):
+          otp = step["messages"][-1].content
+          st.markdown(otp)
+          st.markdown("---")
+6. Step 5
+7. Fifth part
+8. Pass the question to the agent
+9. 
+   
