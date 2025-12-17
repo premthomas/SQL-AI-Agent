@@ -1,5 +1,68 @@
 # SQL AI Agent for the analysis of Counter-Strike Data
-After scraping data for some international LAN / Major Counter-Strike (CS:GO/CS2) tournaments, the goal now is to analyze this data. 
+After scraping data of international LAN / Major Counter-Strike (CS:GO/CS2) tournaments, the goal is to analyze this data. 
+Besides asking the AI some questions, here are some of the secondary goals
+1. Check if the AI can navigate through a complicated data structure. For example, a team in question might be present in either one of two columns.
 
 ## About the data
 The popular source for CS2 data is [HLTV](www.hltv.org).
+For simplicity, I have limited this exercise to two tables. 
+<br>The match header table contains basic information about the match.
+| Field | Description |
+| -------- | ------- |
+| event_id | ID of the event |
+| match_id | ID of the match in the event |
+| match_date | Date the match was played |
+| 1_team | Team One |
+| 2_team | Team Two |
+| 1_score | Score of team One |
+| 2_score | Score of team Two |
+| match_link | Link to the details of the match |
+
+<br>Sample data for match header</br>
+| event_id | match_id | match_date | 1_team | 2_team | 1_score | 2_score | match_link | 
+|--------- | -------- | ---------- | ------ | ------ | ------- | ------- | ---------- | 
+| 6136 | 2354376 | 2022-02-17 | Virtus.pro | Copenhagen Flames | 2 | 0 | https://www.hltv.org/matches/2354376/virtuspro-vs-copenhagen-flames-iem-katowice-2022 | 
+| 6136 | 2354377 | 2022-02-17 | HEROIC | OG | 2 | 1 | https://www.hltv.org/matches/2354377/heroic-vs-og-iem-katowice-2022 | 
+| 6136 | 2354378 | 2022-02-17 | Vitality | MOUZ | 2 | 1 | https://www.hltv.org/matches/2354378/vitality-vs-mouz-iem-katowice-2022 | 
+| 6136 | 2354379 | 2022-02-17 | Gambit | Ninjas in Pyjamas | 1 | 2 | https://www.hltv.org/matches/2354379/gambit-vs-ninjas-in-pyjamas-iem-katowice-2022 | 
+
+<br>The matches table contains the aggregated results of the game level information
+| Field | Description |
+| -------- | ------- |
+| match_id | ID of the match | 
+|1_team | Team One |
+|2_team | Team Two |
+|toss_won | Team that won the toss |
+|1_removed | First map removed by Team One |
+|2_removed | First Map removed by Team Two |
+|1_picked | First map picked by Team One |
+|2_picked | First map picked by Team Two |
+|3_removed | Second map removed by Team One |
+|4_removed | Second map removed by Team Two |
+|3_picked | Second map picked by Team One |
+|4_picked | Second map picked by Team Two |
+|5_removed | First map removed by Team One |
+|6_removed | First map removed by Team One |
+|left_over | Map that is remaining |
+|1_team_1_picked | Score of Team One for the first map |
+|2_team_1_picked | Score of Team Two for the first map |
+|1_team_2_picked | Score of Team One for the second map |
+|2_team_2_picked | Score of Team Two for the second map |
+|1_team_3_picked | Score of Team One for the third map |
+|2_team_3_picked | Score of Team Two for the third map |
+|1_team_4_picked | Score of Team One for the fourth map |
+|2_team_4_picked | Score of Team Two for the fourth map |
+|1_team_leftover | Score of Team One for the leftover map |
+|2_team_leftover | Score of Team Two for the leftover map |
+
+<br> Sample data for the matches table
+| match_id | 1_team | 2_team | toss_won | 1_removed | 2_removed | 1_picked | 2_picked | 3_removed | 4_removed | 3_picked | 4_picked | 5_removed | 6_removed | left_over | 1_team_1_picked | 2_team_1_picked | 1_team_2_picked | 2_team_2_picked | 1_team_3_picked | 2_team_3_picked | 1_team_4_picked | 2_team_4_picked | 1_team_leftover | 2_team_leftover | 
+|-- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | 
+| 2354376 | Virtus.pro | Copenhagen Flames | Copenhagen Flames | Dust2 | Nuke | Vertigo | Inferno | Mirage | Ancient |  |  |  |  | Overpass | 16 | 9 | 16 | 10 |  |  |  |  |  | 
+| 2354377 | HEROIC | OG | OG | Vertigo | Dust2 | Ancient | Overpass | Nuke | Mirage |  |  |  |  | Inferno | 14 | 16 | 16 | 12 |  |  |  |  | 16 | 13
+| 2354378 | Vitality | MOUZ | MOUZ | Overpass | Ancient | Vertigo | Inferno | Dust2 | Mirage |  |  |  |  | Nuke | 22 | 19 | 17 | 19 |  |  |  |  | 16 | 10
+| 2354379 | Gambit | Ninjas in Pyjamas | Ninjas in Pyjamas | Dust2 | Nuke | Ancient | Vertigo | Inferno | Mirage |  |  |  |  | Overpass | 13 | 16 | 16 | 11 |  |  |  |  | 8 | 16
+
+<br> Due to the questionable nature of the data collection, I am not releasing the code here, but here is a summary of what was programmed to get the data.
+1. Selenium for web page scraping
+2. SQLite for the storage of the data
