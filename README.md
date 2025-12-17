@@ -204,7 +204,7 @@ Here are some of the sample questions that I have asked. I will also analyze the
       - Virtus.pro vs G2 (February 25, 2022) - G2 won 0-2
    So the finals of IEM Katowice 2022 was G2 vs FaZe on February 27, 2022, with FaZe winning 0-3.
 
-   <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name. This shows how the LLM "thought" about it. ![screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg)
+   <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name. [This](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg) shows how the LLM "thought" about it. ![screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg)
 4. <b>Human:</b> Map that Vitality often wins and the map that they often lose
    <br><b>AI:</b>
    <br></br><br><br><b>Analysis:</b> The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
