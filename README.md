@@ -187,7 +187,7 @@ Here are some of the sample questions that I have asked. I will also analyze the
 
    The teams that participated in the final match of event 6136 were G2 and FaZe.
 
-   <b>Analysis:</b> This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. Validate the answer with this [link to HLTV](https://www.hltv.org/matches/2354404/g2-vs-faze-iem-katowice-2022)
+   <b>Analysis:</b> This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. Validate the answer with this [link to HLTV](https://www.hltv.org/matches/2354404/g2-vs-faze-iem-katowice-2022).
 2. <b>Human:</b> Tell me about the finals of IEM Katowice 2022
    <br><b>AI:</b>Based on the query results, I can now definitively identify the finals of IEM Katowice 2022.
 
@@ -204,10 +204,9 @@ Here are some of the sample questions that I have asked. I will also analyze the
       - Virtus.pro vs G2 (February 25, 2022) - G2 won 0-2
    So the finals of IEM Katowice 2022 was G2 vs FaZe on February 27, 2022, with FaZe winning 0-3.
 
-   <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name. [This](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg) shows how the LLM "thought" about it. ![screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg)
-4. <b>Human:</b> Map that Vitality often wins and the map that they often lose
+   <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using information, like the URL, it is possible to get the event name. [Screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg) shows how the LLM "thought" about it.
    <br><b>AI:</b>
-   <br></br><br><br><b>Analysis:</b> The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
+   <br></br><br><br><b>Analysis:</b> The team names can appear in one of two columns. Therefore, the AI needs to understand that Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
 5. <b>Human:</b> G2 is playing FaZe. Which maps should G2 drop?
    <br><b>AI:</b>
    <br></br><br><b>Analysis:</b> This is prediction based on existing data. 
