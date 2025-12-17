@@ -174,18 +174,43 @@ Now we have to connect this with a framework. I will be using [LangChain](https:
    
 ## Sample questions and the answers
 Here are some of the sample questions that I have asked. I will also analyze the response.
-1. Human: Who played in the finals of the event_id 6136?
-   <br>AI: 
-   <br>Analysis: This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. Validate the answer with this [link to HLTV](https://www.hltv.org/matches/2354404/g2-vs-faze-iem-katowice-2022)
-2. Human: Tell me about the finals of IEM Katowice 2022
-   <br>AI:
-   <br>Analysis: Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name
-3. Human: Map that Vitality often wins and the map that they often lose
-   <br>AI:
-   <br>Analysis: The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
-4. Human: G2 is playing FaZe. Which maps should G2 drop?
-   <br>AI:
-   <br>Analysis: This is prediction based on existing data. 
-5. Question 5
+1. <b>Human:</b> Who played in the finals of the event_id 6136?
+   <br><b>AI:</b> The matches in event 6136 (IEM Katowice 2022) show a complex tournament structure with many rounds of competition. The "final" match would have been the last match in the bracket structure. From the data, match 2354404 between G2 and FaZe appears to be one    of the later stage matches that likely determined the tournament champion. The teams that participated in this tournament included various top CS:GO teams from around the world, but without a specific indicator for which match was the final, I cannot definitively state a single final match.
+
+   Actually, I need to reconsider this more carefully. The question is about identifying the teams that participated in the final match of event 6136.
+
+   Based on the tournament structure and the data provided, I can see that the tournament had multiple rounds and matches, but I cannot determine from this data alone which specific match was the final. The data shows many teams competing in various matches, but without knowing the tournament bracket structure or which match determined the champion, I cannot definitively identify one final match.
+
+   However, if we are to identify teams that competed in the final stage of the tournament, we would look at the later matches that would have been part of the finals bracket. The data shows matches 2354404 (G2 vs FaZe) as one of the final matches in this tournament.
+
+   But since the question specifically asks for teams in "the final match" of event 6136, and I don't have enough information to definitively identify which match was the final, I should clarify that from the available data, the teams that competed in what appears to be the final match (match 2354404) were G2 and FaZe.
+
+   The teams that participated in the final match of event 6136 were G2 and FaZe.
+
+   <b>Analysis:</b> This is an easy one. I provided the column name and the value. However, the LLM needs to identify which match is the final. There is no field or value in the tables mentioning if a match was a final. Validate the answer with this [link to HLTV](https://www.hltv.org/matches/2354404/g2-vs-faze-iem-katowice-2022)
+2. <b>Human:</b> Tell me about the finals of IEM Katowice 2022
+   <br><b>AI:</b>Based on the query results, I can now definitively identify the finals of IEM Katowice 2022.
+
+   The finals was the match between G2 and FaZe on February 27, 2022 (match ID 2354404), which was the final match of the tournament with a score of 0-3 in favor of FaZe.
+
+   The complete tournament structure shows:
+
+   - Final: G2 vs FaZe (February 27, 2022) - FaZe won 0-3
+   - Semi-finals:
+      - HEROIC vs FaZe (February 26, 2022) - FaZe won 0-2
+      - Natus Vincere vs G2 (February 26, 2022) - G2 won 0-2
+   - Quarter-finals:
+      - Gambit vs FaZe (February 25, 2022) - FaZe won 0-2
+      - Virtus.pro vs G2 (February 25, 2022) - G2 won 0-2
+   So the finals of IEM Katowice 2022 was G2 vs FaZe on February 27, 2022, with FaZe winning 0-3.
+
+   <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using other information (like the URL), it is possible to get the event name. This shows how the LLM "thought" about it. ![screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg)
+4. <b>Human:</b> Map that Vitality often wins and the map that they often lose
+   <br><b>AI:</b>
+   <br></br><br><br><b>Analysis:</b> The team names can appear in one of two columns. Therefore the AI needs to understand Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
+5. <b>Human:</b> G2 is playing FaZe. Which maps should G2 drop?
+   <br><b>AI:</b>
+   <br></br><br><b>Analysis:</b> This is prediction based on existing data. 
+6. Question 5
 7. Question 4
    
