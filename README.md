@@ -2,6 +2,8 @@
 After scraping data of international LAN / Major Counter-Strike (CS:GO/CS2) tournaments, the goal is to analyze this data. 
 Besides asking the AI some questions, here are some of the secondary goals
 1. Check if the AI can navigate through a complicated data structure. For example, a team in question might be present in either one of two columns.
+2. Use open source models
+3. Use StreamLit to format the output
 
 ## About the data
 The popular source for CS2 data is [HLTV](www.hltv.org).
@@ -66,3 +68,6 @@ For simplicity, I have limited this exercise to two tables.
 <br> Due to the questionable nature of the data collection, I am not releasing the code here, but here is a summary of what was programmed to get the data.
 1. Selenium for web page scraping
 2. SQLite for the storage of the data
+
+## About the LLM
+Using Ollama, I have access to different free-to-use models. For this example, I will be using the ["qwen3-coder"](https://ollama.com/library/qwen3-coder) model. For any additional information about Ollama, please read my post on [Ollama and Agents](https://github.com/premthomas/Ollama-and-Agents). It contains information on how to install and get Ollama working on your machine with helpful links.
