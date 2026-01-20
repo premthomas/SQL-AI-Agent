@@ -205,11 +205,6 @@ Here are some of the sample questions that I have asked. I will also analyze the
    So the finals of IEM Katowice 2022 was G2 vs FaZe on February 27, 2022, with FaZe winning 0-3.
 
    <b>Analysis:</b> Stepping up the difficulty. There is no event name stored. Using information, like the URL, it is possible to get the event name. [Screenshot](https://github.com/premthomas/SQL-AI-Agent/blob/main/Tell%20me%20about%20the%20finals%20of%20IEM%20Katowice%202022.jpg) shows how the LLM "thought" about it.
+3. <b>Human:</b> G2 is playing FaZe. Which maps should G2 drop?
    <br><b>AI:</b>
-   <br></br><br><br><b>Analysis:</b> The team names can appear in one of two columns. Therefore, the AI needs to understand that Vitality is a team, and that the team name can appear in either one of the team name columns in a match record.
-5. <b>Human:</b> G2 is playing FaZe. Which maps should G2 drop?
-   <br><b>AI:</b>
-   <br></br><br><b>Analysis:</b> This is prediction based on existing data. 
-6. Question 5
-7. Question 4
-   
+   <br></br><br><b>Analysis:</b> This is prediction based on existing data.    
